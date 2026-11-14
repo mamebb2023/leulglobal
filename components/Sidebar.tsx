@@ -41,10 +41,10 @@ export default function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
         onClick={onNavigate}
         className="flex h-16 shrink-0 items-center px-5"
       >
-        <span className="text-lg font-bold tracking-wide text-white">
+        <span className="text-lg font-extrabold tracking-wide text-primary-foreground">
           LEULGLOBAL
         </span>
-        <span className="text-xs font-semibold text-[#C8A34D]">.COM</span>
+        <span className="text-xs font-semibold text-secondary">.COM</span>
       </Link>
 
       <ul className="flex-1 space-y-1 overflow-y-auto px-3 py-2">
@@ -56,9 +56,9 @@ export default function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
                 href={href}
                 onClick={onNavigate}
                 aria-current={active ? "page" : undefined}
-                className={`flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A34D] ${
+                className={`flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
                   active
-                    ? "bg-white/10 text-[#C8A34D]"
+                    ? "bg-white/10 text-secondary"
                     : "text-white/80 hover:bg-white/5 hover:text-white"
                 }`}
               >
@@ -71,7 +71,7 @@ export default function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
       </ul>
 
       <p className="px-5 py-4 text-[11px] text-white/50">
-        Private account • Design concept
+        Private account • Sample data
       </p>
     </nav>
   );
