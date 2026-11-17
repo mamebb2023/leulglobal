@@ -1,0 +1,98 @@
+{
+  "success": true,
+  "message": "OK",
+  "status": 200,
+  "data": [
+    {
+      "id": "01m7kczanm4xnmw3tkw7fj9vft",
+      "currency_id": "01hccadrasnh4xq05xxqfaah9b",
+      "buying": "43.8867",
+      "selling": "44.3255",
+      "date": "2026-11-17",
+      "weighted_average": "44.1061",
+      "currency": {
+        "id": "01hccadrasnh4xq05xxqfaah9b",
+        "name": "UAE DIRHAM",
+        "code": "AED"
+      }
+    },
+    {
+      "id": "01m7kczam6wpqd4vz7mqepe0dd",
+      "currency_id": "01hccadraf1dnr88nrw8n2yh3d",
+      "buying": "192.0087",
+      "selling": "193.9288",
+      "date": "2026-11-17",
+      "weighted_average": "192.9688",
+      "currency": {
+        "id": "01hccadraf1dnr88nrw8n2yh3d",
+        "name": "SWISS FRANC",
+        "code": "CHF"
+      }
+    },
+    {
+      "id": "01m7kczap45rndkbjg03c4md5r",
+      "currency_id": "01hccadraw6qj2h560vdnzvv07",
+      "buying": "24.1771",
+      "selling": "24.4189",
+      "date": "2026-11-17",
+      "weighted_average": "24.298",
+      "currency": {
+        "id": "01hccadraw6qj2h560vdnzvv07",
+        "name": "CHINESE YUAN",
+        "code": "CNY"
+      }
+    },
+    {
+      "id": "01m7kczanrmw7hmyjj3f8bj7rd",
+      "currency_id": "01hccadratqj2hq49k86vr0nyy",
+      "buying": "177.4877",
+      "selling": "179.2626",
+      "date": "2026-11-17",
+      "weighted_average": "178.3752",
+      "currency": {
+        "id": "01hccadratqj2hq49k86vr0nyy",
+        "name": "EURO",
+        "code": "EUR"
+      }
+    },
+    {
+      "id": "01m7kczam15vhfsav7y0nkdh94",
+      "currency_id": "01hccadrae4tmhz5kqtkhq2rr3",
+      "buying": "212.6919",
+      "selling": "214.8188",
+      "date": "2026-11-17",
+      "weighted_average": "213.7554",
+      "currency": {
+        "id": "01hccadrae4tmhz5kqtkhq2rr3",
+        "name": "POUND STERLING",
+        "code": "GBP"
+      }
+    },
+    {
+      "id": "01m7kczap8z3d8ea56tymgyjg2",
+      "currency_id": "01hccadraxrgm2gyc039fnt6dd",
+      "buying": "521.9052",
+      "selling": "527.1242",
+      "date": "2026-11-17",
+      "weighted_average": "524.5147",
+      "currency": {
+        "id": "01hccadraxrgm2gyc039fnt6dd",
+        "name": "KUWAITI DINAR",
+        "code": "KWD"
+      }
+    },
+    {
+      "id": "01m7kczakmw27mezybjsasxf71",
+      "currency_id": "01hccadrabmb0fb757f4d09v9g",
+      "buying": "161.1913",
+      "selling": "162.8032",
+      "date": "2026-11-17",
+      "weighted_average": "161.1913",
+      "currency": {
+        "id": "01hccadrabmb0fb757f4d09v9g",
+        "name": "US DOLLAR",
+        "code": "USD"
+      }
+    }
+  ]
+}

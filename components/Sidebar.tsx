@@ -4,24 +4,23 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Bell,
-  Bitcoin,
-  Coins,
-  DollarSign,
-  Droplets,
   LayoutGrid,
   Newspaper,
   Settings,
   type LucideIcon,
 } from "lucide-react";
+import { CATEGORY_ICONS } from "@/lib/page-icons";
+import { CATEGORIES, CATEGORY_IDS } from "@/lib/registry";
 
 export type NavItem = { label: string; href: string; icon: LucideIcon };
 
 export const NAV: NavItem[] = [
   { label: "Overview", href: "/dashboard", icon: LayoutGrid },
-  { label: "Gold", href: "/dashboard/gold", icon: Coins },
-  { label: "Crypto", href: "/dashboard/crypto", icon: Bitcoin },
-  { label: "FX Rates", href: "/dashboard/fx", icon: DollarSign },
-  { label: "Commodities", href: "/dashboard/commodities", icon: Droplets },
+  ...CATEGORY_IDS.map((id) => ({
+    label: CATEGORIES[id].label,
+    href: CATEGORIES[id].href,
+    icon: CATEGORY_ICONS[id],
+  })),
   { label: "Market News", href: "/dashboard/news", icon: Newspaper },
   { label: "Alerts", href: "/dashboard/alerts", icon: Bell },
   { label: "Settings", href: "/dashboard/settings", icon: Settings },
@@ -71,7 +70,7 @@ export default function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
       </ul>
 
       <p className="px-5 py-4 text-[11px] text-white/50">
-        Private account • Sample data
+        Private account
       </p>
     </nav>
   );
