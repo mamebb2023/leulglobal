@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import type { ReactNode } from "react";
+import { connection } from "next/server";
 import DashboardLayout from "@/components/DashboardLayout";
 import Breadcrumbs from "@/components/ui/breadcrumb";
 import { DataSources } from "@/components/dashboard/DataSources";
