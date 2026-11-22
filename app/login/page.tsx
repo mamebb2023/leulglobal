@@ -29,11 +29,10 @@ export default function LoginPage() {
               <LockKeyhole className="size-6" aria-hidden />
             </span>
             <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
-              Owner sign in
+              Sign in
             </h1>
             <p className="mt-2 text-sm leading-relaxed text-white/70">
-              This dashboard is private. Sign in with the owner account to see
-              sourced prices and update times.
+              Create an account or sign in to access your dashboard.
             </p>
           </div>
 

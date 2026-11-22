@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
 import {
   changePasswordSchema,
@@ -8,6 +9,25 @@ import {
 } from "@/lib/validators";
 
 export type LoginState = { error: string } | null;
+
+export type SignUpState =
+  | { status: "idle" }
+  | { status: "success" }
+  | { status: "error"; error: string };
+
+export const signUpSchema = z
+  .object({
+    email: z.string().email("Invalid email address."),
+    password: z.string().min(8, "Password must be at least 8 characters."),
+    confirmPassword: z.string(),
+  })
+  .refine(
+    (data) => data.password === data.confirmPassword,
+    {
+      message: "Passwords do not match.",
+      path: ["confirmPassword"],
+    },
+  );
 
 export async function signInAction(
   _previous: LoginState,
@@ -30,18 +50,33 @@ export async function signInAction(
     return { error: "Incorrect email or password." };
   }
 
-  // Sign-ups may still be open in Supabase, so a valid non-owner account must
-  // not be allowed to keep a session. The proxy and requireOwner() reject it
-  // too; this makes the login form fail clearly.
-  if (
-    data.user.email?.toLowerCase() !==
-    (process.env.OWNER_EMAIL ?? "").toLowerCase()
-  ) {
-    await supabase.auth.signOut();
-    return { error: "This account is not allowed." };
+  redirect("/dashboard");
+}
+
+export async function signUpAction(
+  _previous: SignUpState,
+  formData: FormData,
+): Promise<SignUpState> {
+  const email = String(formData.get("email") ?? "").trim();
+  const password = String(formData.get("password") ?? "");
+  const confirmPassword = String(formData.get("confirmPassword") ?? "");
+
+  const parsed = signUpSchema.safeParse({ email, password, confirmPassword });
+  if (!parsed.success) {
+    return { status: "error", error: parsed.error.issues[0]?.message ?? "Invalid input." };
   }
 
-  redirect("/dashboard");
+  const supabase = await createClient();
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+
+  if (error || !data.user) {
+    return { status: "error", error: error?.message ?? "Failed to create account." };
+  }
+
+  return { status: "success" };
 }
 
 export async function signOutAction() {
