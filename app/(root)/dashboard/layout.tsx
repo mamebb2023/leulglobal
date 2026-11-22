@@ -22,6 +22,7 @@ export default function Layout({ children }: { children: ReactNode }) {
  * rejects a valid non-owner session.
  */
 async function OwnerOnly({ children }: { children: ReactNode }) {
+  await connection();
   await requireOwner();
 
   return (

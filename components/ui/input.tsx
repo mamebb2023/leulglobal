@@ -1,30 +1,48 @@
-"use client";
-
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  variant?: "default" | "outline" | "underlined";
-}
+const inputVariants = cva(
+  [
+    // layout + type
+    "flex h-10 w-full min-w-0 text-sm text-foreground",
+    "placeholder:text-muted-foreground",
+    // file inputs
+    "file:mr-3 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground",
+    // interaction
+    "transition-colors outline-none",
+    "focus-visible:ring-2 focus-visible:ring-[#C8A34D] focus-visible:ring-offset-0",
+    "disabled:cursor-not-allowed disabled:opacity-50",
+    // invalid state (set aria-invalid on the input)
+    "aria-[invalid=true]:border-destructive aria-[invalid=true]:focus-visible:ring-destructive",
+  ],
+  {
+    variants: {
+      variant: {
+        // Filled field on the app surface. A border keeps it visible on cards.
+        default: "rounded-md border border-input bg-background px-3 py-2",
+        // Brand-colored border, transparent background.
+        outline: "rounded-md border border-[#C8A34D] bg-transparent px-3 py-2",
+        // Minimal: bottom border only, focus recolors the line.
+        underlined:
+          "rounded-none border-0 border-b border-input bg-transparent px-0 py-2 focus-visible:border-[#C8A34D] focus-visible:ring-0",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
 
-export function Input({
-  className,
-  variant = "default",
-  ...props
-}: InputProps) {
-  const variants = {
-    default: "bg-white text-black rounded-md px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C8A34D] disabled:opacity-50",
-    outline: "border border-[#C8A34D] rounded-md px-3 py-2 bg-transparent text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C8A34D] disabled:opacity-50",
-    underlined: "border-b border-gray-300 rounded-none px-0 py-2 placeholder-gray-400 focus:outline-none focus:border-[#C8A34D] focus:ring-0 disabled:opacity-50",
-  };
+export interface InputProps
+  extends React.ComponentProps<"input">, VariantProps<typeof inputVariants> {}
 
+// React 19: `ref` is a regular prop, so it's forwarded through ...props.
+export function Input({ className, variant, type, ...props }: InputProps) {
   return (
     <input
-      className={cn(
-        "transition-colors",
-        variants[variant],
-        " disabled:cursor-not-allowed",
-        className,
-      )}
+      type={type}
+      className={cn(inputVariants({ variant }), className)}
       {...props}
     />
   );

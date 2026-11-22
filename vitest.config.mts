@@ -8,6 +8,9 @@ export default defineConfig({
       "server-only": fileURLToPath(
         new URL("./tests/stubs/server-only.ts", import.meta.url),
       ),
+      // Match tsconfig `paths: { "@/*": ["./*"] }` so tests can import
+      // from `@/...` the same way source files do.
+      "@": fileURLToPath(new URL(".", import.meta.url)),
     },
   },
   test: {

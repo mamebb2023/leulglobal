@@ -22,11 +22,14 @@ interface StoredRow {
 export function statusFor(
   cat: CategoryId,
   asOf: string | null,
-  now = Date.now(),
+  now?: number,
   override?: { freshWithinMinutes?: number; staleAfterMinutes?: number },
 ): QuoteStatus {
+  // Resolve `now` inside the function body so it is never evaluated at import
+  // time, which would trigger the "unstable value Date.now()" prerender error.
+  const timestamp = now ?? Date.now();
   if (!asOf) return "unavailable";
-  const ageMin = (now - new Date(asOf).getTime()) / 60_000;
+  const ageMin = (timestamp - new Date(asOf).getTime()) / 60_000;
   if (!Number.isFinite(ageMin)) return "unavailable";
   const c = CATEGORIES[cat];
   const fresh = override?.freshWithinMinutes ?? c.freshWithinMinutes;

@@ -3,8 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, Home, LogOut, Menu, Settings, Star, X } from "lucide-react";
-import { signOutAction } from "@/app/actions/auth";
+import { Bell, Home, Menu, Settings, Star, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Sidebar, { isActive, type NavItem } from "@/components/Sidebar";
 
@@ -90,18 +89,18 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
               <span className="h-2 w-2 rounded-full bg-secondary" aria-hidden />
               <span className="hidden sm:inline">PRIVATE ACCOUNT</span>
             </span>
-            <form action={signOutAction}>
+            <Link href="/dashboard/settings">
               <Button
-                type="submit"
+                type="button"
                 variant="ghost"
                 size="icon"
-                aria-label="Sign out"
-                title="Sign out"
+                aria-label="Settings"
+                title="Settings"
                 className="h-11 w-11 text-white/80 hover:bg-white/10 hover:text-white"
               >
-                <LogOut aria-hidden />
+                <Settings aria-hidden />
               </Button>
-            </form>
+            </Link>
           </div>
         </header>
 

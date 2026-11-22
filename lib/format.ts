@@ -38,12 +38,13 @@ export const fmtTime = (iso: string | null) =>
   iso ? `${fmtDate(iso)}, ${fmtClock(iso)}` : "—";
 
 /** Coarse age of an observation, e.g. "just now", "9 min ago", "2 days ago". */
-export function fmtAgo(iso: string | null, now = Date.now()): string {
+export function fmtAgo(iso: string | null, now?: number): string {
+  const timestamp = now ?? Date.now();
   if (!iso) return "—";
   const observed = new Date(iso).getTime();
   if (!Number.isFinite(observed)) return "—";
 
-  const minutes = Math.floor(Math.max(0, now - observed) / 60_000);
+  const minutes = Math.floor(Math.max(0, timestamp - observed) / 60_000);
   if (minutes < 1) return "just now";
   if (minutes < 60) return `${minutes} min ago`;
 
